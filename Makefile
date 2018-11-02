@@ -44,3 +44,4 @@ run:
 	./hauntedhouse
 clean:
 	rm -f $(OBJECTS) *~ house.o common.o scene.o
+	rm -rf  hauntedhouse.dsym

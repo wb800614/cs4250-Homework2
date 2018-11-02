@@ -2,7 +2,30 @@
 
 House::House()
 {
+  vertices = new vec4[16]{
+      vec4(-1*WALL_WIDTH, FLOOR_HEIGHT,  0.5, 1.0),
+      vec4(-1*WALL_WIDTH,  WALL_HEIGHT,  0.5, 1.0),
+      vec4( WALL_WIDTH,  WALL_HEIGHT,  0.5, 1.0),
+      vec4( WALL_WIDTH, FLOOR_HEIGHT,  0.5, 1.0),
+      vec4(-1*WALL_WIDTH, FLOOR_HEIGHT, -0.5, 1.0),
+      vec4(-1*WALL_WIDTH,  WALL_HEIGHT, -0.5, 1.0),
+      vec4( WALL_WIDTH,  WALL_HEIGHT, -0.5, 1.0),
+      vec4( WALL_WIDTH, FLOOR_HEIGHT, -0.5, 1.0),
 
+      vec4(-1*WALL_WIDTH, WALL_HEIGHT, -0.5, 1.0),
+      vec4(-1*WALL_WIDTH, FLOOR_HEIGHT, -0.5, 1.0),
+      vec4(-1*WALL_WIDTH+room_dimensions[0][0], WALL_HEIGHT, -0.5, 1.0),
+      vec4(-1*WALL_WIDTH+room_dimensions[0][0], FLOOR_HEIGHT, -0.5, 1.0),
+      vec4(-1*WALL_WIDTH, WALL_HEIGHT, -0.6, 1.0),
+      vec4(-1*WALL_WIDTH, FLOOR_HEIGHT, -0.6, 1.0),
+      vec4(-1*WALL_WIDTH+room_dimensions[0][0], WALL_HEIGHT, -0.6, 1.0),
+      vec4(-1*WALL_WIDTH+room_dimensions[0][0], FLOOR_HEIGHT, -0.6, 1.0),
+  };
+}
+
+House::~House()
+{
+  delete this;
 }
 
 void House::InitHouse(vec4 * npoints, vec4 * ncolors, int index)
@@ -11,30 +34,30 @@ void House::InitHouse(vec4 * npoints, vec4 * ncolors, int index)
 	colors = ncolors;
 	Index = index;
 
-	colorcube();
+	InitPoints();
+}
+
+void House::InitPoints()
+{
+  for (int i = 0; i < 2; i++)
+  {
+    MyQuad(1+i*8, 0+i*8, 3+i*8, 2+i*8);
+    MyQuad(2+i*8, 3+i*8, 7+i*8, 6+i*8);
+    MyQuad(3+i*8, 0+i*8, 4+i*8, 7+i*8);
+    MyQuad(6+i*8, 5+i*8, 1+i*8, 2+i*8);
+    MyQuad(4+i*8, 5+i*8, 6+i*8, 7+i*8);
+    MyQuad(5+i*8, 4+i*8, 0+i*8, 1+i*8);
+  }
 }
 
 void House::MyQuad(int a, int b, int c, int d)
 {
-  colors[Index] = vertex_colors[a]; points[Index] = vertices[a]; Index++; 
-  colors[Index] = vertex_colors[b]; points[Index] = vertices[b]; Index++;
-  colors[Index] = vertex_colors[c]; points[Index] = vertices[c]; Index++;
-  colors[Index] = vertex_colors[a]; points[Index] = vertices[a]; Index++;
-  colors[Index] = vertex_colors[c]; points[Index] = vertices[c]; Index++;
-  colors[Index] = vertex_colors[d]; points[Index] = vertices[d]; Index++;
-}
-
-//----------------------------------------------------------------------------
-
-// generate 12 triangles: 36 vertices and 36 colors
-void House::colorcube()
-{
-  MyQuad(1, 0, 3, 2);
-  MyQuad(2, 3, 7, 6);
-  MyQuad(3, 0, 4, 7);
-  MyQuad(6, 5, 1, 2);
-  MyQuad(4, 5, 6, 7);
-  MyQuad(5, 4, 0, 1);
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[a]; Index++; 
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[b]; Index++;
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[c]; Index++;
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[a]; Index++;
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[c]; Index++;
+  colors[Index] = vertex_colors[3]; points[Index] = vertices[d]; Index++;
 }
 
 void House::DrawHouse()

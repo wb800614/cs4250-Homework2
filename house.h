@@ -22,21 +22,29 @@ class House
 {
 public:
 	House();
+	~House();
 	void InitHouse(vec4 * points, vec4 * colors, int index); 
 	void DrawHouse();
+
+	const int NumVertices = 36*2;
 private:
+	//Constants
+	const GLfloat WALL_WIDTH = 0.02;
+	const GLfloat WALL_HEIGHT = 0.75;
+	const GLfloat FLOOR_HEIGHT = -0.20;
+	const GLfloat room_dimensions[6][2] = {
+		{0.75,0.75},
+		{0.75,0.75},
+		{0.75,0.75},
+		{0.75,0.75},
+		{0.75,0.75},
+		{0.75,0.75}
+	};
+
 	vec4 * points;
 	vec4 * colors;
-	vec4 vertices[8] = {
-	    vec4(-0.2, -0.5,  0.5, 1.0),
-	    vec4(-0.2,  0.5,  0.5, 1.0),
-	    vec4( 0.2,  0.5,  0.5, 1.0),
-	    vec4( 0.2, -0.5,  0.5, 1.0),
-	    vec4(-0.2, -0.5, -0.5, 1.0),
-	    vec4(-0.2,  0.5, -0.5, 1.0),
-	    vec4( 0.2,  0.5, -0.5, 1.0),
-	    vec4( 0.2, -0.5, -0.5, 1.0)
-	};
+	vec4 * vertices;
+	
 	vec4 vertex_colors[8] = {
 	    vec4(0.0, 0.0, 0.0, 1.0),  // black
 	    vec4(1.0, 0.0, 0.0, 1.0),  // red
@@ -48,9 +56,9 @@ private:
 	    vec4(0.0, 1.0, 1.0, 1.0)   // cyan
 	};
 	int Index;
-	const int NumVertices = 36;
+	void InitPoints();
 	void MyQuad(int a, int b, int c, int d);
-	void colorcube();
+	
 };
 
 #endif

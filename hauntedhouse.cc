@@ -19,10 +19,8 @@
 #include "common.h"
 #include "scene.h"
 
-const int NumVertices = 36; //(6 faces)(2 triangles/face)(3 vertices/triangle)
-
 // Viewing transformation parameters
-GLfloat radius = 3.0;
+GLfloat radius = 0.1;
 GLfloat theta = 0.0;
 GLfloat phi = 0.0;
 
@@ -57,8 +55,8 @@ int Index = 0;
 
 Scene * myscene = new Scene();
 
-vec4 points[36];
-vec4 colors[36];
+vec4 points[36*2];
+vec4 colors[36*2];
 
 //----------------------------------------------------------------------------
 // OpenGL initialization

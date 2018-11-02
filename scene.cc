@@ -3,6 +3,7 @@
 Scene::Scene()
 {
 	house = new House();
+	NumVertices = house -> NumVertices;
 }
 
 Scene::~Scene()

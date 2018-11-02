@@ -125,7 +125,7 @@ extern "C" void display()
   mat4  p = Perspective(fovy, aspect, zNear, zFar);
   glUniformMatrix4fv(projection, 1, GL_TRUE, p);
 
-  glDrawArrays(GL_TRIANGLES, 0, myscene->NumVertices);
+  myscene->DrawScene();
 
   glutSwapBuffers();
 }

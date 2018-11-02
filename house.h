@@ -23,6 +23,7 @@ class House
 public:
 	House();
 	void InitHouse(vec4 * points, vec4 * colors, int index); 
+	void DrawHouse();
 private:
 	vec4 * points;
 	vec4 * colors;
@@ -47,6 +48,7 @@ private:
 	    vec4(0.0, 1.0, 1.0, 1.0)   // cyan
 	};
 	int Index;
+	const int NumVertices = 36;
 	void MyQuad(int a, int b, int c, int d);
 	void colorcube();
 };

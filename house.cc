@@ -36,3 +36,8 @@ void House::colorcube()
   MyQuad(4, 5, 6, 7);
   MyQuad(5, 4, 0, 1);
 }
+
+void House::DrawHouse()
+{
+  glDrawArrays(GL_TRIANGLES, 0, NumVertices);
+}

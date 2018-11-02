@@ -27,7 +27,7 @@ public:
 	Scene();
 	~Scene();
 	void InitScene(vec4 * npoints, vec4 * ncolors, int index);
-
+	void DrawScene();
 	//Variables
 	const int NumVertices = 36;
 };
